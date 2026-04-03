@@ -32,13 +32,13 @@ function calcularFiltros() {
   if (filtroTalla.value) {
     filtros += `talla=${filtroTalla.value}&`;
   }
+  
+  if (filtroOrdenar.value) {
+    filtros += `sort=${filtroOrdenar.value}&`;
+  }
 
   if (filtros.endsWith('&')) {
     filtros = filtros.slice(0, -1); // Eliminar el último '&'
-  }
-
-  if (filtroOrdenar.value) {
-    filtros += `sort=${filtroOrdenar.value}&`;
   }
 
   return filtros;
@@ -61,8 +61,6 @@ function mostrarCamisetas(camisetas) {
   contenedor.innerHTML = ""; // Limpiar el contenedor antes de agregar las camisetas
 
   camisetas.forEach(camiseta => {
-
-    console.log(camiseta);
 
     let articulo = document.createElement("article");
     articulo.className = "camiseta"
