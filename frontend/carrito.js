@@ -6,7 +6,6 @@ function mostrarCarrito() {
     contenedor.innerHTML = "";
 
     carrito.forEach(camiseta => {
-        contenedor.innerHTML = ""
 
         const divFila = document.createElement("div");
         divFila.className = "carrito-fila";
@@ -81,9 +80,9 @@ function mostrarCarrito() {
 
 document.addEventListener("DOMContentLoaded", () => {
     mostrarCarrito();
+});
 
-    document.getElementById("btn-vaciar").addEventListener("click", () => {
+document.getElementById("btn-vaciar").addEventListener("click", () => {
         storageManager.vaciarCarrito();
         mostrarCarrito();
     });
-});

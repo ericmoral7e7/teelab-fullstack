@@ -18,6 +18,7 @@ function calcularFiltros() {
   let filtroTexto = document.getElementById("filtroTexto");
   let filtroColor = document.getElementById("filtroColor");
   let filtroTalla = document.getElementById("filtroTalla");
+  let filtroOrdenar = document.getElementById("filtroOrdenar");
 
   let filtros = "?"
   if (filtroTexto.value) {
@@ -34,6 +35,10 @@ function calcularFiltros() {
 
   if (filtros.endsWith('&')) {
     filtros = filtros.slice(0, -1); // Eliminar el último '&'
+  }
+
+  if (filtroOrdenar.value) {
+    filtros += `sort=${filtroOrdenar.value}&`;
   }
 
   return filtros;
@@ -90,6 +95,13 @@ function mostrarCamisetas(camisetas) {
       selectColores.innerHTML += `<option value="${color}">${color.toUpperCase()}</option>`
     });
 
+    //Selector de Cantidad
+    let inputCantidad = document.createElement('input');
+    inputCantidad.type = "number";
+    inputCantidad.min = "1"; 
+    inputCantidad.value = "1"; 
+    inputCantidad.className = "input-cantidad"; 
+
     //Boton
     let boton = document.createElement('button')
     boton.innerText = "Añadir al carrito"
@@ -101,7 +113,7 @@ function mostrarCamisetas(camisetas) {
         precio: camiseta.precioBase,
         talla: selectTallas.value,
         color: selectColores.value,
-        cantidad: 1
+        cantidad: parseInt(inputCantidad.value)
       });
     });
 
@@ -110,6 +122,7 @@ function mostrarCamisetas(camisetas) {
     articulo.appendChild(descripcion)
     articulo.appendChild(selectTallas)
     articulo.appendChild(selectColores)
+    articulo.appendChild(inputCantidad)
     articulo.appendChild(precio)
     articulo.appendChild(boton)
 
