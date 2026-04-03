@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MINI-TIENDA</title>
+    <script src="productos.js" type="module" defer></script>
+    <link rel="stylesheet" href="tienda.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <h1>MINI-TIENDA</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="#">Ofertas</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="filtros">
+
+            <!-- Filtro por texto -->
+            <input type="text" id="filtroTexto" placeholder="Buscar producto...">
+
+            <!-- Filtro por color -->
+            <select id="filtroColor">
+                <option value="">Todos los colores</option>
+                <option value="rojo">Rojo</option>
+                <option value="azul">Azul</option>
+                <option value="verde">Verde</option>
+                <option value="negro">Negro</option>
+            </select>
+
+            <!-- Filtro por talla -->
+            <select id="filtroTalla">
+                <option value="">Todas las tallas</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+
+            <!-- Botón opcional -->
+            <button id="btnFiltrar">Filtrar</button>
+
+        </section>
+        <section id="tshirts">
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>2026 MINI-TIENDA. Todos los derechos reservados.</p>
+        <p>Contacto: info@MINI-TIENDA.com | Tel: 123-456-789</p>
+    </footer>
+
+</body>
+
+</html>

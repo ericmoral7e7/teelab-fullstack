@@ -1,0 +1,221 @@
+/* =====================
+   LAYOUT GENERAL
+   ===================== */
+#carrito-wrapper {
+    display: flex;
+    gap: 30px;
+    padding: 30px;
+    align-items: flex-start;
+}
+
+/* =====================
+   COLUMNA ITEMS
+   ===================== */
+#carrito-items {
+    flex: 2;
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.09);
+    border: 1px solid #ebebf0;
+}
+
+#carrito-items h2 {
+    color: #1a1a2e;
+    font-size: 1.4rem;
+    margin: 0 0 20px 0;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #f0f0f4;
+    letter-spacing: 0.5px;
+}
+
+/* Fila de un producto */
+.carrito-fila {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f4;
+}
+
+.carrito-fila img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #f4f4f6;
+}
+
+.carrito-info {
+    flex: 1;
+}
+
+.carrito-info h3 {
+    margin: 0 0 5px 0;
+    font-size: 1rem;
+    color: #1a1a2e;
+}
+
+.carrito-detalle {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Control de cantidad */
+.carrito-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f4f4f6;
+    border-radius: 8px;
+    padding: 4px 10px;
+}
+
+.carrito-cantidad button {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.2s;
+}
+
+.carrito-cantidad button:hover {
+    color: #c0392b;
+}
+
+.carrito-cantidad span {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Precio de la fila */
+.carrito-precio {
+    font-weight: 700;
+    color: #27a05a;
+    font-size: 1rem;
+    min-width: 70px;
+    text-align: right;
+    margin: 0;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.btn-eliminar:hover {
+    color: #c0392b;
+}
+
+/* Carrito vacío */
+#carrito-vacio {
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    padding: 30px 0;
+}
+
+/* Botón volver */
+#btn-seguir {
+    display: inline-block;
+    margin-top: 22px;
+    color: #555;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+#btn-seguir:hover {
+    color: #1a1a2e;
+}
+
+/* =====================
+   COLUMNA RESUMEN
+   ===================== */
+#resumen-pedido {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.09);
+    border: 1px solid #ebebf0;
+    position: sticky;
+    top: 20px;
+}
+
+#resumen-pedido h2 {
+    color: #1a1a2e;
+    font-size: 1.3rem;
+    margin: 0 0 20px 0;
+    padding-bottom: 14px;
+    border-bottom: 2px solid #f0f0f4;
+    letter-spacing: 0.5px;
+}
+
+.resumen-linea {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    color: #555;
+    border-bottom: 1px solid #f0f0f4;
+}
+
+.resumen-total {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    border-bottom: none;
+    padding-top: 16px;
+}
+
+#btn-comprar {
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px 0;
+    background-color: #c0392b;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btn-comprar:hover {
+    background-color: #a93226;
+    transform: translateY(-1px);
+}
+
+#btn-vaciar {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 0;
+    background-color: transparent;
+    color: #999;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+#btn-vaciar:hover {
+    border-color: #c0392b;
+    color: #c0392b;
+}

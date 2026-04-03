@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito - MINI-TIENDA</title>
+  <script src="carrito.js" type="module" defer></script>
+  <link rel="stylesheet" href="tienda.css">
+  <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">
+      <h1>MINI-TIENDA</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="tienda.html">Inicio</a></li>
+        <li><a href="tienda.html">Productos</a></li>
+        <li><a href="#">Ofertas</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <div id="carrito-wrapper">
+
+      <!-- COLUMNA IZQUIERDA: lista de productos -->
+      <section id="carrito-items">
+        <h2>Tu carrito</h2>
+
+        <!-- Aquí se generarán dinámicamente las filas de productos -->
+
+        <div id="lista-carrito">
+          <!-- Contenido generado por JS -->
+        </div>
+
+        <p id="carrito-vacio" style="display:none;">No hay productos en el carrito.</p>
+
+        <a href="tienda.html" id="btn-seguir">← Seguir comprando</a>
+      </section>
+
+      <!-- COLUMNA DERECHA: resumen del pedido -->
+      <aside id="resumen-pedido">
+        <h2>Resumen del pedido</h2>
+
+        <div class="resumen-linea">
+          <span>Subtotal</span>
+          <span id="subtotal">0,00 €</span>
+        </div>
+        <div class="resumen-linea">
+          <span>Envío</span>
+          <span id="envio">Gratis</span>
+        </div>
+        <div class="resumen-linea resumen-total">
+          <span>Total</span>
+          <span id="total">0,00 €</span>
+        </div>
+
+        <button id="btn-comprar" onclick="finalizarCompra()">Finalizar compra</button>
+        <button id="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+      </aside>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>2026 MINI-TIENDA. Todos los derechos reservados.</p>
+    <p>Contacto: info@MINI-TIENDA.com | Tel: 123-456-789</p>
+  </footer>
+
+</body>
+</html>
