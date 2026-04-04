@@ -32,7 +32,7 @@ function calcularFiltros() {
   if (filtroTalla.value) {
     filtros += `talla=${filtroTalla.value}&`;
   }
-  
+
   if (filtroOrdenar.value) {
     filtros += `sort=${filtroOrdenar.value}&`;
   }
@@ -96,9 +96,9 @@ function mostrarCamisetas(camisetas) {
     //Selector de Cantidad
     let inputCantidad = document.createElement('input');
     inputCantidad.type = "number";
-    inputCantidad.min = "1"; 
-    inputCantidad.value = "1"; 
-    inputCantidad.className = "input-cantidad"; 
+    inputCantidad.min = "1";
+    inputCantidad.value = "1";
+    inputCantidad.className = "input-cantidad";
 
     //Boton
     let boton = document.createElement('button')

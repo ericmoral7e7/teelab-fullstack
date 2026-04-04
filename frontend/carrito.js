@@ -93,3 +93,40 @@ document.getElementById("btn-vaciar").addEventListener("click", () => {
     storageManager.vaciarCarrito();
     mostrarCarrito();
 });
+
+document.getElementById("btn-comprar").addEventListener("click", () => {
+    crearJsonComanda()
+
+    // const respuesta = await fetch('http://localhost:3001/api/comandas', {
+    //         method: 'POST', // Le decimos que vamos a enviar datos
+    //         headers: {
+    //             'Content-Type': 'application/json' // Avisamos al servidor que le enviamos un JSON
+    //         },
+    //         body: JSON.stringify(comanda) // Convertimos tu objeto JavaScript a texto JSON
+    //     });
+})
+
+function crearJsonComanda() {
+    const carrito = storageManager.obtenerCarrito();
+
+    let comanda = {
+        cliente: {
+            nombre: "Alex",
+            email: "alex.dev@example.com"
+        },
+        direccion: {
+            calle: "Carrer de Mar 45",
+            cp: "08911",
+            ciudad: "Badalona"
+        },
+
+        items: carrito.map(camisetaCarrito => ({
+            camisetaId: camisetaCarrito.id,
+            talla: camisetaCarrito.talla,
+            color: camisetaCarrito.color,
+            cantidad: camisetaCarrito.cantidad
+        }))
+    }
+    
+    return comanda
+}

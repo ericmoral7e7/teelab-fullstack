@@ -10,9 +10,9 @@ export function obtenerCarrito() {
 export function anadirElementoCarrito(nuevaCamiseta) {
     let carrito = obtenerCarrito();
 
-    const existe = carrito.find(c => 
-        c.id === nuevaCamiseta.id && 
-        c.talla === nuevaCamiseta.talla && 
+    const existe = carrito.find(c =>
+        c.id === nuevaCamiseta.id &&
+        c.talla === nuevaCamiseta.talla &&
         c.color === nuevaCamiseta.color
     );
 
@@ -31,7 +31,7 @@ export function vaciarCarrito() {
 
 export function sumarUnProducto(id, talla, color) {
     let carrito = obtenerCarrito();
-    const camisetaEnCarrito = carrito.find(c => 
+    const camisetaEnCarrito = carrito.find(c =>
         c.id === id && c.talla === talla && c.color === color
     );
 
@@ -43,8 +43,8 @@ export function sumarUnProducto(id, talla, color) {
 
 export function eliminarUnProducto(id, talla, color) {
     let carrito = obtenerCarrito();
-    
-    const camisetaEnCarrito = carrito.find(c => 
+
+    const camisetaEnCarrito = carrito.find(c =>
         c.id === id && c.talla === talla && c.color === color
     );
 
@@ -62,7 +62,7 @@ export function eliminarUnProducto(id, talla, color) {
 
 export function eliminarElementoCarrito(id, talla, color) {
     let carrito = obtenerCarrito();
-    carrito = carrito.filter(c => 
+    carrito = carrito.filter(c =>
         !(c.id === id && c.talla === talla && c.color === color)
     );
     guardarCarrito(carrito);
