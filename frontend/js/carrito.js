@@ -16,7 +16,7 @@ function renderCart() {
         const advertencia = crearParrafo("", "No hay ningun elemento en el carrito", false)
         const a = document.createElement('a')
         a.innerText = "Seguir comprando"
-        a.href = "../html/tienda.html"
+        a.href = "../index.html"
 
         contenedor.append(advertencia, a)
         return

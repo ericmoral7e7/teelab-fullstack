@@ -222,3 +222,31 @@ footer {
     border-color: #1a1a2e;
     box-shadow: 0 0 5px rgba(26, 26, 46, 0.2);
 }
+
+/* =====================
+   POPUP / TOAST NOTIFICACIÓN
+   ===================== */
+.toast-notificacion {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #27a05a; 
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-size: 1rem;
+    font-weight: 500;
+    z-index: 1000;
+    
+    /* Animación inicial (oculta y un poco más abajo) */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Clase que aplicaremos con JS para que aparezca suavemente */
+.toast-notificacion.mostrar {
+    opacity: 1;
+    transform: translateY(0);
+}
