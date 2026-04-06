@@ -202,3 +202,23 @@ footer {
     font-size: 0.88rem;
     line-height: 1.7;
 }
+
+.camiseta .input-cantidad {
+    width: 30%;
+    margin: 8px 0;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #d0d0da;
+    background-color: #fafafa;
+    color: #333;
+    font-size: 0.9rem;
+    text-align: center; 
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.camiseta .input-cantidad:focus {
+    border-color: #1a1a2e;
+    box-shadow: 0 0 5px rgba(26, 26, 46, 0.2);
+}

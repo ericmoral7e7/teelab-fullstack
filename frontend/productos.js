@@ -60,7 +60,7 @@ function crearTarjetaCamiseta(camiseta) {
 //Crear elemento de texto o imagen
 function crearElementoTexto(etiqueta, clase, contenido) {
   const elemento = document.createElement(etiqueta) // crear elemento
-
+  if (clase) elemento.className = clase;
   if (etiqueta === 'img') elemento.src = contenido // setear contenido
   else elemento.innerText = contenido
 
