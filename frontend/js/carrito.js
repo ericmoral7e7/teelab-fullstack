@@ -16,7 +16,7 @@ function renderCart() {
         const advertencia = crearParrafo("", "No hay ningun elemento en el carrito", false)
         const a = document.createElement('a')
         a.innerText = "Seguir comprando"
-        a.href = "tienda.html"
+        a.href = "../html/tienda.html"
 
         contenedor.append(advertencia, a)
         return
@@ -35,7 +35,7 @@ function crearFilaCarrito(camiseta) {
     divFila.className = "carrito-fila";
 
     const img = document.createElement("img");
-    img.src = camiseta.imagen;
+    img.src = "../" + camiseta.imagen;
 
     divFila.append(
         img,
@@ -133,7 +133,7 @@ document.getElementById("btn-comprar").addEventListener("click", async () => {
 
     //Cargar pàgina ticket
     storageManager.saveLastTicket(ticket)
-    window.location.href = 'ticket.html'
+    window.location.href = '../html/ticket.html'
 })
 
 //Funcion que crea el json necesario para crear una comanda en la api a partir de nuestro carrito actual

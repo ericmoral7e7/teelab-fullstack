@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ticket de compra - TEELAB</title>
-  <script src="ticket.js" defer></script>
-  <link rel="stylesheet" href="tienda.css">
-  <link rel="stylesheet" href="ticket.css">
-  <script type="module" src="ticket.js" defer></script>
+  <script src="../js/ticket.js" defer></script>
+  <link rel="stylesheet" href="../css/tienda.css">
+  <link rel="stylesheet" href="../css/ticket.css">
+  <script type="module" src="../js/ticket.js" defer></script>
 </head>
+
 <body>
 
   <header>
@@ -17,10 +19,8 @@
     </div>
     <nav>
       <ul>
-        <li><a href="tienda.html">Inicio</a></li>
-        <li><a href="tienda.html">Productos</a></li>
-        <li><a href="#">Ofertas</a></li>
-        <li><a href="#">Contacto</a></li>
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="../html/carrito.html">Carrito</a></li>
       </ul>
     </nav>
   </header>
@@ -71,9 +71,9 @@
               </tr>
             </thead>
             <tbody id="ticket-body">
-              
-                <!-- Estructura de cada fila que debe generar el JS: -->
-                <!-- <tr>
+
+              <!-- Estructura de cada fila que debe generar el JS: -->
+              <!-- <tr>
                   <td class="ticket-nombre">NOMBRE PRODUCTO</td>
                   <td>M</td>
                   <td>mostaza</td>
@@ -81,7 +81,7 @@
                   <td>19,95 €</td>
                   <td class="ticket-subtotal">39,90 €</td>
                 </tr> -->
-             
+
             </tbody>
           </table>
         </section>
@@ -111,7 +111,7 @@
 
       <!-- Acciones -->
       <nav id="ticket-acciones" aria-label="Acciones del ticket">
-        <a href="tienda.html" id="btn-volver">← Volver a la tienda</a>
+        <a href="../index.html" id="btn-volver">← Volver a la tienda</a>
         <button id="btn-imprimir" onclick="window.print()">🖨 Imprimir ticket</button>
       </nav>
 
@@ -124,4 +124,5 @@
   </footer>
 
 </body>
+
 </html>

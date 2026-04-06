@@ -43,7 +43,7 @@ function crearTarjetaCamiseta(camiseta) {
   const inputCantidad = crearInputCantidad()
 
   articulo.append( // crea cada uno de los elementos con funciones que los fabrican y los añade a un articulo
-    crearElementoTexto('img', '', camiseta.imagenes[camiseta.colores[0]]),
+    crearElementoTexto('img', '', "../" + camiseta.imagenes[camiseta.colores[0]]),
     crearElementoTexto('h3', '', camiseta.nombre),
     crearElementoTexto('p', '', camiseta.descripcion),
     selectorTallas, selectorColores, inputCantidad,
