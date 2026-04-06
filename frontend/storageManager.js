@@ -1,15 +1,21 @@
-export function guardarCarrito(datos) {
+
+// ================= CARRITO =================
+//Guardar carrito
+function saveCart(datos) {
     localStorage.setItem('carrito', JSON.stringify(datos));
 }
 
-export function obtenerCarrito() {
+//Cargar información del carrito
+export function loadCart() {
     const datos = localStorage.getItem('carrito');
     return datos ? JSON.parse(datos) : [];
 }
 
-export function anadirElementoCarrito(nuevaCamiseta) {
-    let carrito = obtenerCarrito();
+// Añadir un elemento al carrito
+export function addToCart(nuevaCamiseta) {
+    let carrito = loadCart(); //Cargar carrito actual
 
+    //Si ya existe el elemento con las caracteristicas exactas, sumar 1 a la cantidad del producto
     const existe = carrito.find(c =>
         c.id === nuevaCamiseta.id &&
         c.talla === nuevaCamiseta.talla &&
@@ -19,30 +25,32 @@ export function anadirElementoCarrito(nuevaCamiseta) {
     if (existe) {
         existe.cantidad += nuevaCamiseta.cantidad;
     } else {
-        carrito.push(nuevaCamiseta);
+        carrito.push(nuevaCamiseta); //Si no añadir el elemento al carrito
     }
 
-    guardarCarrito(carrito);
+    saveCart(carrito); // Actualizar el carrito con el nuevo carrito
 }
 
-export function vaciarCarrito() {
+export function clearCart() {
     localStorage.removeItem('carrito');
 }
 
-export function sumarUnProducto(id, talla, color) {
-    let carrito = obtenerCarrito();
+//Incrementa la cantidad en el carrito de un producto en 1
+export function incrementProductQuantity(id, talla, color) {
+    let carrito = loadCart();
     const camisetaEnCarrito = carrito.find(c =>
         c.id === id && c.talla === talla && c.color === color
     );
 
     if (camisetaEnCarrito) {
         camisetaEnCarrito.cantidad++;
-        guardarCarrito(carrito);
+        saveCart(carrito);
     }
 }
 
-export function eliminarUnProducto(id, talla, color) {
-    let carrito = obtenerCarrito();
+//Decrementa la cantidad en el carrito de un producto en 1
+export function decrementProductQuantity(id, talla, color) {
+    let carrito = loadCart();
 
     const camisetaEnCarrito = carrito.find(c =>
         c.id === id && c.talla === talla && c.color === color
@@ -55,15 +63,25 @@ export function eliminarUnProducto(id, talla, color) {
             // Si llega a 0, la borramos del carrito
             carrito = carrito.filter(c => c !== camisetaEnCarrito);
         }
-        guardarCarrito(carrito);
+        saveCart(carrito);
     }
 }
 
 
-export function eliminarElementoCarrito(id, talla, color) {
-    let carrito = obtenerCarrito();
+export function removeCartItem(id, talla, color) {
+    let carrito = loadCart();
     carrito = carrito.filter(c =>
         !(c.id === id && c.talla === talla && c.color === color)
     );
-    guardarCarrito(carrito);
+    saveCart(carrito);
+}
+
+
+// ================= TICKET =================
+export function saveLastTicket(ticket) {
+    localStorage.setItem('ultimoTicket', JSON.stringify(ticket));
+}
+
+export function getLastTicket(ticket) {
+    return JSON.parse(localStorage.getItem('ultimoTicket'));
 }

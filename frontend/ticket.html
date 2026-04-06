@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket de compra - MINI-TIENDA</title>
+  <script src="ticket.js" defer></script>
+  <link rel="stylesheet" href="tienda.css">
+  <link rel="stylesheet" href="ticket.css">
+  <script type="module" src="ticket.js" defer></script>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <h1>MINI-TIENDA</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="tienda.html">Inicio</a></li>
+        <li><a href="tienda.html">Productos</a></li>
+        <li><a href="#">Ofertas</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div id="ticket-wrapper">
+
+      <!-- Mensaje de confirmación -->
+      <section id="ticket-confirmacion" aria-label="Confirmación de pedido">
+        <div id="ticket-icono" aria-hidden="true">✓</div>
+        <h2>¡Pedido confirmado!</h2>
+        <p>Gracias por tu compra. Aquí tienes el resumen de tu pedido.</p>
+      </section>
+
+      <!-- Ticket / recibo del pedido -->
+      <article id="ticket" aria-label="Resumen del pedido">
+
+        <!-- Metadatos del pedido -->
+        <header id="ticket-header">
+          <dl id="ticket-meta">
+            <div>
+              <dt class="ticket-label">Número de pedido</dt>
+              <dd id="ticket-id" class="ticket-valor">#ORD-0000</dd>
+            </div>
+            <div>
+              <dt class="ticket-label">Fecha</dt>
+              <dd id="ticket-fecha" class="ticket-valor">--/--/----</dd>
+            </div>
+          </dl>
+          <p id="ticket-header-estado">
+            <span id="ticket-estado" class="ticket-badge">recibida</span>
+          </p>
+        </header>
+
+        <hr class="ticket-separador">
+
+        <!-- Lista de productos -->
+        <section aria-label="Productos del pedido">
+          <table id="ticket-tabla">
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Talla</th>
+                <th scope="col">Color</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio unit.</th>
+                <th scope="col">Subtotal</th>
+              </tr>
+            </thead>
+            <tbody id="ticket-body">
+              
+                <!-- Estructura de cada fila que debe generar el JS: -->
+                <!-- <tr>
+                  <td class="ticket-nombre">NOMBRE PRODUCTO</td>
+                  <td>M</td>
+                  <td>mostaza</td>
+                  <td>2</td>
+                  <td>19,95 €</td>
+                  <td class="ticket-subtotal">39,90 €</td>
+                </tr> -->
+             
+            </tbody>
+          </table>
+        </section>
+
+        <hr class="ticket-separador">
+
+        <!-- Totales -->
+        <footer id="ticket-footer">
+          <dl id="ticket-totales">
+            <div class="totales-linea">
+              <dt>Envío</dt>
+              <dd>Gratis</dd>
+            </div>
+            <div class="totales-linea totales-final">
+              <dt>Total</dt>
+              <dd id="ticket-total">0,00 €</dd>
+            </div>
+          </dl>
+
+          <p id="ticket-mensaje">
+            Recibirás una confirmación por correo electrónico en breve.<br>
+            ¡Esperamos que disfrutes tu compra!
+          </p>
+        </footer>
+
+      </article>
+
+      <!-- Acciones -->
+      <nav id="ticket-acciones" aria-label="Acciones del ticket">
+        <a href="tienda.html" id="btn-volver">← Volver a la tienda</a>
+        <button id="btn-imprimir" onclick="window.print()">🖨 Imprimir ticket</button>
+      </nav>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>2026 MINI-TIENDA. Todos los derechos reservados.</p>
+    <p>Contacto: info@MINI-TIENDA.com | Tel: 123-456-789</p>
+  </footer>
+
+</body>
+</html>

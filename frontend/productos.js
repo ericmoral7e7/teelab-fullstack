@@ -1,19 +1,125 @@
 import * as storageManager from "./storageManager.js";
 const linkCamisetas = "http://localhost:3001/api/camisetas" // URL del endpoint de camisetas
 
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+  document.getElementById("btnFiltrar").addEventListener("click", aplicarFiltros);
+});
+
 async function init() {
   let camisetas = await obtenerCamisetas(linkCamisetas); // Llamar a la API
 
   mostrarCamisetas(camisetas);
 }
 
+//Llama a la api para obtener el catalogo de camisetas
+async function obtenerCamisetas(link) {
+  try {
+    let response = await fetch(link);
+    let data = await response.json(); // Convertir a JSON, objeto
+    return data;
+  } catch (error) {
+    console.error("Error al obtener datos", error);
+  }
+}
+
+//Muestra / recarga la lista de camisetas según la petición a la api 
+function mostrarCamisetas(camisetas) {
+  let contenedor = document.getElementById("tshirts");
+  contenedor.innerHTML = ""; // Limpiar el contenedor antes de agregar las camisetas
+
+  camisetas.forEach(camiseta => {
+    contenedor.appendChild(crearTarjetaCamiseta(camiseta)) // Por cada camiseta crea una tarjeta 
+  });
+}
+
+function crearTarjetaCamiseta(camiseta) {
+  let articulo = document.createElement("article");
+  articulo.className = "camiseta"
+
+  //Crear selectores
+  const selectorTallas = crearSelect(camiseta.tallas)
+  const selectorColores = crearSelect(camiseta.colores)
+  const inputCantidad = crearInputCantidad()
+
+  articulo.append( // crea cada uno de los elementos con funciones que los fabrican y los añade a un articulo
+    crearElementoTexto('img', '', camiseta.imagenes[camiseta.colores[0]]),
+    crearElementoTexto('h3', '', camiseta.nombre),
+    crearElementoTexto('p', '', camiseta.descripcion),
+    selectorTallas, selectorColores, inputCantidad,
+    crearElementoTexto('p', 'precio', `${camiseta.precioBase}€`),
+    crearBotonAnadir(camiseta, selectorTallas, selectorColores, inputCantidad)
+  )
+
+  return articulo
+}
+
+// =============== FABRICADORES =============== 
+// Crean objetos de manera que se pueda reutilizar el codigo y evitar codigo repetido
+
+//Crear elemento de texto o imagen
+function crearElementoTexto(etiqueta, clase, contenido) {
+  const elemento = document.createElement(etiqueta) // crear elemento
+
+  if (etiqueta === 'img') elemento.src = contenido // setear contenido
+  else elemento.innerText = contenido
+
+  return elemento
+}
+
+//Crea un selector
+function crearSelect(opciones) {
+  const select = document.createElement("select") // Crear select
+
+  opciones.forEach(opcion => { //Setear propiedades
+    select.innerHTML += `<option value="${opcion}">${opcion.toUpperCase()}</option>`
+  })
+
+  return select
+}
+
+//Crea un input de cantidad
+function crearInputCantidad() {
+  const input = document.createElement("input") // crear input
+
+  input.type = "number"; //Setear propiedades
+  input.min = "1";
+  input.value = "1";
+  input.className = "input-cantidad";
+
+  return input
+}
+
+//Crea un boton de añadir al carrito 
+function crearBotonAnadir(camiseta, selectorTalla, selectorColores, inputCantidad) {
+  const boton = document.createElement('button') //Crear boton
+
+  boton.innerText = "Añadir al carrito" //Setear propiedades
+  boton.addEventListener('click', () => {
+    storageManager.addToCart({
+      id: camiseta.id,
+      nombre: camiseta.nombre,
+      imagen: camiseta.imagenes[selectorColores.value],
+      precio: camiseta.precioBase,
+      talla: selectorTalla.value,
+      color: selectorColores.value,
+      cantidad: parseInt(inputCantidad.value)
+    });
+  })
+
+  return boton
+}
+
+// ============================= FILTROS =============================
+
+//Función que aplica filtros, recargando la pagina con los nuevos resultados
 async function aplicarFiltros() {
   const filtros = calcularFiltros();
   const camisetas = await obtenerCamisetas(linkCamisetas + filtros);
   mostrarCamisetas(camisetas);
 }
 
-
+//Función que genera la url (con query params) para la petición con filtros que queremos 
 function calcularFiltros() {
   let filtroTexto = document.getElementById("filtroTexto");
   let filtroColor = document.getElementById("filtroColor");
@@ -43,92 +149,3 @@ function calcularFiltros() {
 
   return filtros;
 }
-
-async function obtenerCamisetas(link) {
-  try {
-    let response = await fetch(link);
-    let data = await response.json(); // Convertir a JSON, objeto
-    return data;
-  } catch (error) {
-    console.error("Error al obtener datos", error);
-  }
-}
-
-
-function mostrarCamisetas(camisetas) {
-  let contenedor = document.getElementById("tshirts");
-
-  contenedor.innerHTML = ""; // Limpiar el contenedor antes de agregar las camisetas
-
-  camisetas.forEach(camiseta => {
-
-    let articulo = document.createElement("article");
-    articulo.className = "camiseta"
-
-    let imagen = document.createElement('img')
-    let primerColor = camiseta.colores[0];
-    imagen.setAttribute('src', camiseta.imagenes[primerColor]);
-
-    let titulo = document.createElement('h3')
-    titulo.innerText = camiseta.nombre
-
-    let descripcion = document.createElement('p')
-    descripcion.innerText = camiseta.descripcion
-
-    let precio = document.createElement('p')
-    precio.className = "precio"
-    precio.innerText = `${camiseta.precioBase}€`
-
-    //TALLA
-    let selectTallas = document.createElement('select')
-    let tallas = camiseta.tallas
-    tallas.forEach(talla => {
-      selectTallas.innerHTML += `<option value="${talla}">${talla}</option>`
-    });
-
-    //Colores
-    let selectColores = document.createElement('select')
-    let colores = camiseta.colores
-    colores.forEach(color => {
-      selectColores.innerHTML += `<option value="${color}">${color.toUpperCase()}</option>`
-    });
-
-    //Selector de Cantidad
-    let inputCantidad = document.createElement('input');
-    inputCantidad.type = "number";
-    inputCantidad.min = "1";
-    inputCantidad.value = "1";
-    inputCantidad.className = "input-cantidad";
-
-    //Boton
-    let boton = document.createElement('button')
-    boton.innerText = "Añadir al carrito"
-    boton.addEventListener('click', () => {
-      storageManager.anadirElementoCarrito({
-        id: camiseta.id,
-        nombre: camiseta.nombre,
-        imagen: camiseta.imagenes[selectColores.value],
-        precio: camiseta.precioBase,
-        talla: selectTallas.value,
-        color: selectColores.value,
-        cantidad: parseInt(inputCantidad.value)
-      });
-    });
-
-    articulo.appendChild(imagen)
-    articulo.appendChild(titulo)
-    articulo.appendChild(descripcion)
-    articulo.appendChild(selectTallas)
-    articulo.appendChild(selectColores)
-    articulo.appendChild(inputCantidad)
-    articulo.appendChild(precio)
-    articulo.appendChild(boton)
-
-    contenedor.appendChild(articulo)
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  init();
-  document.getElementById("btnFiltrar").addEventListener("click", aplicarFiltros);
-});

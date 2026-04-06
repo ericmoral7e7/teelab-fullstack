@@ -1,0 +1,299 @@
+/* =====================
+   WRAPPER GENERAL
+   ===================== */
+#ticket-wrapper {
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+/* =====================
+   CONFIRMACIÓN SUPERIOR
+   ===================== */
+#ticket-confirmacion {
+    text-align: center;
+}
+
+#ticket-icono {
+    width: 62px;
+    height: 62px;
+    background-color: #27a05a;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 4px 14px rgba(39, 160, 90, 0.35);
+}
+
+#ticket-confirmacion h2 {
+    color: #1a1a2e;
+    font-size: 1.6rem;
+    margin: 0 0 8px;
+}
+
+#ticket-confirmacion p {
+    color: #777;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+/* =====================
+   CUERPO DEL TICKET
+   ===================== */
+#ticket {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ebebf0;
+}
+
+/* --- Cabecera del ticket ---
+   Anulamos los estilos de tienda.css que aplican
+   background oscuro a cualquier elemento <header>  */
+#ticket-header {
+    background: none;
+    background-image: none;
+    box-shadow: none;
+    padding: 0;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+}
+
+#ticket-meta {
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+#ticket-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#ticket-meta dd {
+    margin: 0;
+}
+
+#ticket-header-estado {
+    margin-left: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ticket-label {
+    font-size: 0.78rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.ticket-valor {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.ticket-badge {
+    display: inline-block;
+    background-color: #e8f5ee;
+    color: #27a05a;
+    border: 1px solid #b2dfc4;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    letter-spacing: 0.3px;
+}
+
+/* --- Separador --- */
+hr.ticket-separador {
+    border: none;
+    height: 2px;
+    background: repeating-linear-gradient(
+        to right,
+        #e0e0e8 0px,
+        #e0e0e8 8px,
+        transparent 8px,
+        transparent 16px
+    );
+    margin: 20px 0;
+}
+
+/* --- Tabla de productos --- */
+#ticket-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+#ticket-tabla thead tr {
+    background-color: #f4f4f6;
+}
+
+#ticket-tabla thead th {
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+    font-weight: 600;
+}
+
+#ticket-tabla thead th:last-child {
+    text-align: right;
+}
+
+#ticket-tabla tbody tr {
+    border-bottom: 1px solid #f0f0f4;
+    transition: background-color 0.15s;
+}
+
+#ticket-tabla tbody tr:last-child {
+    border-bottom: none;
+}
+
+#ticket-tabla tbody tr:hover {
+    background-color: #fafafa;
+}
+
+#ticket-tabla tbody td {
+    padding: 12px 12px;
+    color: #444;
+    vertical-align: middle;
+}
+
+.ticket-nombre {
+    font-weight: 600;
+    color: #1a1a2e !important;
+}
+
+.ticket-subtotal {
+    text-align: right;
+    font-weight: 700;
+    color: #27a05a !important;
+}
+
+/* --- Totales --- */
+#ticket-footer {
+    background: none;
+    background-image: none;
+    box-shadow: none;
+    padding: 0;
+    color: inherit;
+}
+
+#ticket-totales {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.totales-linea {
+    display: flex;
+    gap: 40px;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.totales-linea dt,
+.totales-linea dd {
+    margin: 0;
+    padding: 0;
+}
+
+.totales-final {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    padding-top: 8px;
+}
+
+#ticket-total {
+    color: #c0392b;
+}
+
+/* --- Mensaje pie --- */
+#ticket-mensaje {
+    text-align: center;
+    color: #aaa;
+    font-size: 0.85rem;
+    margin: 24px 0 0;
+    line-height: 1.7;
+}
+
+/* =====================
+   BOTONES DE ACCIÓN
+   ===================== */
+#ticket-acciones {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+#btn-volver {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.2s;
+}
+
+#btn-volver:hover {
+    color: #1a1a2e;
+}
+
+#btn-imprimir {
+    padding: 10px 24px;
+    background-color: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#btn-imprimir:hover {
+    background-color: #2d2d4e;
+    transform: translateY(-1px);
+}
+
+/* =====================
+   ESTILOS DE IMPRESIÓN
+   ===================== */
+@media print {
+    header, footer, #ticket-acciones, #ticket-confirmacion {
+        display: none;
+    }
+    body {
+        background: white;
+    }
+    #ticket {
+        box-shadow: none;
+        border: none;
+    }
+    #ticket-wrapper {
+        margin: 0;
+    }
+}
