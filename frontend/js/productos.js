@@ -114,18 +114,16 @@ function crearBotonAnadir(camiseta, selectorTalla, selectorColores, inputCantida
 // ============================= NOTIFICACIONES =============================
 
 function mostrarNotificacion(mensaje) {
-  // 1. Creamos el div
   const toast = document.createElement("div");
   toast.className = "toast-notificacion";
   toast.innerText = mensaje;
 
-  // 2. Lo añadimos al body
   document.body.appendChild(toast);
 
-  // 3. Mini-retraso para que la animación CSS funcione correctamente
+  // Mini-retraso para que la animación CSS funcione correctamente
   setTimeout(() => toast.classList.add("mostrar"), 10);
 
-  // 4. A los 3 segundos, lo ocultamos y lo eliminamos del HTML
+  // A los 3 segundos, lo ocultamos y lo eliminamos del HTML
   setTimeout(() => {
     toast.classList.remove("mostrar");
     setTimeout(() => toast.remove(), 300); // Espera a que termine la animación
