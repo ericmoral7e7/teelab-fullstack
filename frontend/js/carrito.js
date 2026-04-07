@@ -12,15 +12,17 @@ function renderCart() {
 
     let totalPrecio = 0;
 
-    if(carrito.length === 0) {
+    if (carrito.length === 0) {
         const advertencia = crearParrafo("", "No hay ningun elemento en el carrito", false)
         const a = document.createElement('a')
         a.innerText = "Seguir comprando"
         a.href = "../index.html"
 
         contenedor.append(advertencia, a)
+        actualizarResumen(totalPrecio);
+
         return
-    }    
+    }
 
     carrito.forEach(camiseta => {
         totalPrecio += camiseta.precio * camiseta.cantidad
@@ -111,9 +113,7 @@ document.getElementById("btn-vaciar").addEventListener("click", () => {
 document.getElementById("btn-comprar").addEventListener("click", async () => {
     let comanda = crearJsonComanda()
 
-    console.log(comanda)
-    console.log(comanda.items)
-    if(comanda.items.length === 0){
+    if (comanda.items.length === 0) {
         alert("No hay ningún elemento en el carrito")
         return
     }
