@@ -16,11 +16,12 @@ export function getCamisetas(filters) {
     }
 
     if (filters.q) {
-        camisetasResultado = camisetasResultado.filter(c => c.nombre.includes(filters.q) || c.descripcion.includes(filters.q));
+        camisetasResultado = camisetasResultado.filter(c => c.nombre.toLowerCase().includes(filters.q.toLowerCase()) || c.descripcion.toLowerCase().includes(filters.q.toLowerCase()));
     }
 
     return camisetasResultado
 }
+
 
 //[...array] -> Esto crea una copia del array
 export function ordenarCamisetas(camisetasArray, sort) {
