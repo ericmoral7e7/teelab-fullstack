@@ -3,7 +3,12 @@ const linkCamisetas = "http://localhost:3001/api/camisetas" // URL del endpoint 
 
 document.addEventListener("DOMContentLoaded", () => {
   init();
-  document.getElementById("btnFiltrar").addEventListener("click", aplicarFiltros);
+  document.getElementById("limpiarFiltros").addEventListener("click", limpiarFiltros);
+
+  //Añadir event listener a cada filtro para que al cambiar su valor, se apliquen los filtros
+  ["filtroTexto", "filtroColor", "filtroTalla", "filtroOrdenar"].forEach(id => {
+    document.getElementById(id).addEventListener("change", aplicarFiltros);
+  });
 });
 
 async function init() {
@@ -137,6 +142,14 @@ async function aplicarFiltros() {
   const filtros = calcularFiltros();
   const camisetas = await obtenerCamisetas(linkCamisetas + filtros);
   mostrarCamisetas(camisetas);
+}
+
+function limpiarFiltros() {
+  document.getElementById("filtroTexto").value = "";
+  document.getElementById("filtroColor").value = "";
+  document.getElementById("filtroTalla").value = "";
+  document.getElementById("filtroOrdenar").value = "";
+  aplicarFiltros();
 }
 
 //Función que genera la url (con query params) para la petición con filtros que queremos 
