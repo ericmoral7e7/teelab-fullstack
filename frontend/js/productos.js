@@ -3,18 +3,14 @@ const linkCamisetas = "http://localhost:3001/api/camisetas" // URL del endpoint 
 
 document.addEventListener("DOMContentLoaded", () => {
   init();
-  document.getElementById("limpiarFiltros").addEventListener("click", limpiarFiltros);
-
-  //Añadir event listener a cada filtro para que al cambiar su valor, se apliquen los filtros
-  ["filtroTexto", "filtroColor", "filtroTalla", "filtroOrdenar"].forEach(id => {
-    document.getElementById(id).addEventListener("change", aplicarFiltros);
-  });
 });
 
 async function init() {
   let camisetas = await obtenerCamisetas(linkCamisetas); // Llamar a la API para obtener las camisetas
 
   mostrarCamisetas(camisetas);
+
+  aplicarEventListeners();
 }
 
 //Llama a la api para obtener el catalogo de camisetas
@@ -59,6 +55,16 @@ function crearTarjetaCamiseta(camiseta) {
   )
 
   return articulo
+}
+
+//============= EVENT LISTENERS =============
+function aplicarEventListeners() {
+  document.getElementById("limpiarFiltros").addEventListener("click", limpiarFiltros);
+
+  //Añadir event listener a cada filtro para que al cambiar su valor, se apliquen los filtros
+  ["filtroTexto", "filtroColor", "filtroTalla", "filtroOrdenar"].forEach(id => {
+    document.getElementById(id).addEventListener("change", aplicarFiltros);
+  });
 }
 
 // =============== FABRICADORES =============== 
@@ -106,7 +112,7 @@ function crearBotonAnadir(camiseta, selectorTalla, selectorColores, inputCantida
     storageManager.addToCart({
       id: camiseta.id,
       nombre: camiseta.nombre,
-      imagen: camiseta.imagenes[selectorColores.value],
+      imagen: camiseta.imagenes[camiseta.colores[0]],
       precio: camiseta.precioBase,
       talla: selectorTalla.value,
       color: selectorColores.value,

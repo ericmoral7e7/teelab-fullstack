@@ -35,7 +35,7 @@ function carritoVacio() {
     const div = document.createElement("div");
     const advertencia = crearParrafo("", "No hay ningun elemento en el carrito", false)
     const a = document.createElement('a')
-    a.innerText = "Seguir comprando"
+    a.innerText = "Seguir comprando" 
     a.href = "../index.html"
     div.append(advertencia, a)
     return div
