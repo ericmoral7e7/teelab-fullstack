@@ -82,6 +82,6 @@ export function saveLastTicket(ticket) {
     localStorage.setItem('ultimoTicket', JSON.stringify(ticket));
 }
 
-export function getLastTicket(ticket) {
+export function getTicket(ticket) {
     return JSON.parse(localStorage.getItem('ultimoTicket'));
 }

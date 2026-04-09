@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function init() {
-  let camisetas = await obtenerCamisetas(linkCamisetas); // Llamar a la API
+  let camisetas = await obtenerCamisetas(linkCamisetas); // Llamar a la API para obtener las camisetas
 
   mostrarCamisetas(camisetas);
 }
@@ -23,7 +23,7 @@ async function obtenerCamisetas(link) {
   }
 }
 
-//Muestra / recarga la lista de camisetas según la petición a la api 
+//Muestra/recarga la lista de camisetas según el resultado de la petición a la api 
 function mostrarCamisetas(camisetas) {
   let contenedor = document.getElementById("tshirts");
   contenedor.innerHTML = ""; // Limpiar el contenedor antes de agregar las camisetas
@@ -33,7 +33,9 @@ function mostrarCamisetas(camisetas) {
   });
 }
 
+//Función que crea el HTML de UNA camiseta a partir de un objeto camiseta
 function crearTarjetaCamiseta(camiseta) {
+  //Crear el articulo principal
   let articulo = document.createElement("article");
   articulo.className = "camiseta"
 
@@ -55,7 +57,7 @@ function crearTarjetaCamiseta(camiseta) {
 }
 
 // =============== FABRICADORES =============== 
-// Crean objetos de manera que se pueda reutilizar el codigo y evitar codigo repetido
+// Crean objetos, de manera que se pueda reutilizar el codigo y evitar codigo repetido
 
 //Crear elemento de texto o imagen
 function crearElementoTexto(etiqueta, clase, contenido) {
@@ -112,7 +114,6 @@ function crearBotonAnadir(camiseta, selectorTalla, selectorColores, inputCantida
 }
 
 // ============================= NOTIFICACIONES =============================
-
 function mostrarNotificacion(mensaje) {
   const toast = document.createElement("div");
   toast.className = "toast-notificacion";
@@ -131,7 +132,6 @@ function mostrarNotificacion(mensaje) {
 }
 
 // ============================= FILTROS =============================
-
 //Función que aplica filtros, recargando la pagina con los nuevos resultados
 async function aplicarFiltros() {
   const filtros = calcularFiltros();
