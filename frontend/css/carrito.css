@@ -219,3 +219,10 @@
     border-color: #c0392b;
     color: #c0392b;
 }
+
+.carrito-subtotal {
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 1.05rem;
+    margin-left: 10px;
+}

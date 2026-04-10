@@ -35,7 +35,7 @@ function carritoVacio() {
     const div = document.createElement("div");
     const advertencia = crearParrafo("", "No hay ningun elemento en el carrito", false)
     const a = document.createElement('a')
-    a.innerText = "Seguir comprando" 
+    a.innerText = "Seguir comprando"
     a.href = "../index.html"
     div.append(advertencia, a)
     return div
@@ -49,11 +49,14 @@ function crearFilaCarrito(camiseta) {
     const img = document.createElement("img");
     img.src = "../" + camiseta.imagen;
 
+    const subtotalLinea = (camiseta.precio * camiseta.cantidad).toFixed(2)
+
     divFila.append(
         img,
         crearInfoProducto(camiseta),
         crearBotonesCantidad(camiseta),
         crearParrafo("carrito-precio", `${camiseta.precio} €`),
+        crearParrafo("carrito-subtotal", `x ${camiseta.cantidad} = ${subtotalLinea} €`),
         crearBotonEliminar(camiseta)
     );
     return divFila;
@@ -157,6 +160,11 @@ document.getElementById("btn-comprar").addEventListener("click", async () => {
         },
         body: JSON.stringify(comanda)
     });
+
+    if (!respuesta.ok) {
+        alert("No se pudo finalizar la compra. Inténtalo de nuevo más tarde.");
+        return
+    }
 
     //Obtener el ticket, guardarlo en para mostrarlo en la página de ticket y vaciar el carrito
     const ticket = await respuesta.json()

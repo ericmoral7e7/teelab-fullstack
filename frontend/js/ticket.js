@@ -20,6 +20,8 @@ function cargarTicket() {
 
     //Actualizar el precio total
     document.getElementById("ticket-total").innerText = infoTicket.total + "€";
+
+    document.getElementById("ticket-estado").innerText = infoTicket.estado
 }
 
 //Función que crea una fila que representa una camiseta del ticket a partir de un objeto camiseta
