@@ -63,7 +63,7 @@ function aplicarEventListeners() {
 
   //Añadir event listener a cada filtro para que al cambiar su valor, se apliquen los filtros
   ["filtroTexto", "filtroColor", "filtroTalla", "filtroOrdenar"].forEach(id => {
-    document.getElementById(id).addEventListener("change", aplicarFiltros);
+    document.getElementById(id).addEventListener("input", aplicarFiltros);
   });
 }
 

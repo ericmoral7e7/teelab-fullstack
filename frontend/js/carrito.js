@@ -152,29 +152,33 @@ document.getElementById("btn-comprar").addEventListener("click", async () => {
         return
     }
 
-    //Si hay camisetas en el carrito, hacemos la petición POST a la API para crear la comanda y obtener el ticket
-    const respuesta = await fetch('http://localhost:3001/api/comandas', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(comanda)
-    });
+    try {
+        const respuesta = await fetch('http://localhost:3001/api/comandas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comanda)
+        });
 
-    if (!respuesta.ok) {
-        alert("No se pudo finalizar la compra. Inténtalo de nuevo más tarde.");
-        return
+        if (!respuesta.ok) {
+            alert("No se pudo finalizar la compra. Inténtalo de nuevo más tarde.");
+            return
+        }
+
+        const ticket = await respuesta.json()
+        storageManager.saveLastTicket(ticket)
+        storageManager.clearCart()
+
+        //renderCart();
+
+        window.location.href = '../html/ticket.html'
+
+    } catch (error) {
+        // Este bloque atrapará los errores de red (servidor caído, sin internet, etc.)
+        console.error("Error de red o de servidor:", error);
+        alert("No pudimos conectar con el servidor. Revisa tu conexión o inténtalo más tarde.");
     }
-
-    //Obtener el ticket, guardarlo en para mostrarlo en la página de ticket y vaciar el carrito
-    const ticket = await respuesta.json()
-    storageManager.saveLastTicket(ticket)
-    storageManager.clearCart()
-
-    renderCart();
-
-    //Pasar a pàgina ticket
-    window.location.href = '../html/ticket.html'
 })
 
 //Funcion que crea el json necesario para crear una comanda en la api a partir de nuestro carrito actual
