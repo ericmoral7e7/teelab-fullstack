@@ -117,7 +117,7 @@ function generarTicket(comanda) {
             color: camiseta.color,
             cantidad: camiseta.cantidad,
             precioUnitario: datosCamiseta.precioBase,
-            subtotal: datosCamiseta.precioBase * camiseta.cantidad
+            subtotal: (datosCamiseta.precioBase * camiseta.cantidad).toFixed(2)
         })
         total += datosCamiseta.precioBase * camiseta.cantidad
     });

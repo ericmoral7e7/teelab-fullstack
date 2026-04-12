@@ -1,8 +1,13 @@
 import * as storageManager from "./storageManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    renderCart();
+    init();
 });
+
+function init() {
+    renderCart()
+    asignarEventListeners()
+}
 
 //Función que renderiza el carrito en la página a partir de los datos guardados en el localStorage
 function renderCart() {
@@ -131,55 +136,59 @@ function actualizarResumen(totalPrecio) {
     textoTotal.innerText = `Total: ${totalPrecio.toFixed(2)} €`;
 }
 
-//Boton vaciar carrito
-document.getElementById("btn-vaciar").addEventListener("click", () => {
-    storageManager.clearCart();
-    renderCart();
-});
+function asignarEventListeners() {
+    //Boton vaciar carrito
+    document.getElementById("btn-vaciar").addEventListener("click", () => {
+        storageManager.clearCart();
+        renderCart();
+    });
 
+    // ============== BOTON COMPRAR ==============
+    //Funcion que se llamara al hacer click en el boton comprar. 
+    document.getElementById("btn-comprar").addEventListener("click", async () => {
 
+        //Obtener json de la comanda a partir del carrito actual
+        let comanda = crearJsonComanda()
 
-// ============== BOTON COMPRAR ==============
-//Funcion que se llamara al hacer click en el boton comprar. 
-document.getElementById("btn-comprar").addEventListener("click", async () => {
-
-    //Obtener json de la comanda a partir del carrito actual
-    let comanda = crearJsonComanda()
-
-    //Si no hay camisetas en el carrtio, no hacemos la petición a la API y mostramos un mensaje de alerta
-    if (comanda.items.length === 0) {
-        alert("No hay ningún elemento en el carrito")
-        return
-    }
-
-    try {
-        const respuesta = await fetch('http://localhost:3001/api/comandas', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(comanda)
-        });
-
-        if (!respuesta.ok) {
-            alert("No se pudo finalizar la compra. Inténtalo de nuevo más tarde.");
+        //Si no hay camisetas en el carrtio, no hacemos la petición a la API y mostramos un mensaje de alerta
+        if (comanda.items.length === 0) {
+            alert("No hay ningún elemento en el carrito")
             return
         }
 
-        const ticket = await respuesta.json()
-        storageManager.saveLastTicket(ticket)
-        storageManager.clearCart()
+        await peticionPostComanda(comanda)
+    })
 
-        //renderCart();
+}
 
-        window.location.href = '../html/ticket.html'
+async function peticionPostComanda(comanda) {
+    try {
+            const respuesta = await fetch('http://localhost:3001/api/comandas', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(comanda)
+            });
 
-    } catch (error) {
-        // Este bloque atrapará los errores de red (servidor caído, sin internet, etc.)
-        console.error("Error de red o de servidor:", error);
-        alert("No pudimos conectar con el servidor. Revisa tu conexión o inténtalo más tarde.");
-    }
-})
+            if (!respuesta.ok) {
+                alert("No se pudo finalizar la compra. Inténtalo de nuevo más tarde.");
+                return
+            }
+
+            const ticket = await respuesta.json()
+            storageManager.saveLastTicket(ticket)
+            storageManager.clearCart()
+
+
+            window.location.replace('../html/ticket.html')
+
+        } catch (error) {
+            // Este bloque atrapará los errores de red (servidor caído, sin internet, etc.)
+            console.error("Error de red o de servidor:", error);
+            alert("No pudimos conectar con el servidor. Revisa tu conexión o inténtalo más tarde.");
+        }
+}
 
 //Funcion que crea el json necesario para crear una comanda en la api a partir de nuestro carrito actual
 function crearJsonComanda() {

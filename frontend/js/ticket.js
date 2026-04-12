@@ -1,8 +1,12 @@
 import { getTicket } from "./storageManager.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    cargarTicket();
+    init();
 });
+
+function init() {
+    cargarTicket()
+}
 
 function cargarTicket() {
     const infoTicket = getTicket()
